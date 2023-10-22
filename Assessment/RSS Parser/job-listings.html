@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Listings</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <style>
+      /* Add some CSS to style the map container */
+      .map-container {
+        width: 100%;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Job Listings</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Job Title</th>
+          <th>Location</th>
+          <th>View on Map</th>
+        </tr>
+      </thead>
+      <tbody id="jobListings">
+        <!-- Data will be inserted here -->
+      </tbody>
+    </table>
+
+    <script>
+      // Make an API request through CORS Anywhere
+      var jobListingsArray = [];
+      $(document).ready(function () {
+        $.ajax({
+          url: "https://cors-anywhere.herokuapp.com/https://careers.moveoneinc.com/rss/all-rss.xml/",
+          dataType: "xml",
+          success: function (data) {
+            // Parse the XML data and populate the table
+            $(data)
+              .find("item")
+              .each(function () {
+                var jobTitle = $(this).find("title").text();
+                var location = $(this).find("country").text();
+
+                // Create an object to represent a job listing
+                var jobListing = {
+                  title: jobTitle,
+                  location: location,
+                };
+
+                // Add the job listing to the array
+                jobListingsArray.push(jobListing);
+
+                // Create a new row in the table with the "View on Map" button
+                var row =
+                  "<tr><td>" +
+                  jobTitle +
+                  "</td><td>" +
+                  location +
+                  "</td><td><button class='view-map-button' data-index='" +
+                  (jobListingsArray.length - 1) +
+                  "'>View on Map</button></td></tr>";
+
+                // Append the row to the table
+                $("#jobListings").append(row);
+              });
+
+            // After populating the table, geocode the locations
+            geocodeLocations();
+          },
+          error: function () {
+            alert("Failed to fetch data from the API.");
+          },
+        });
+      });
+
+      // Function to open Google Maps with the location's coordinates
+      function openGoogleMaps(lat, lng) {
+        var url =
+          "https://www.google.com/maps/search/?api=1&query=" + lat + "," + lng;
+        window.open(url, "_blank");
+      }
+
+      // Function to geocode locations
+      function geocodeLocations() {
+        var apiKey = "AIzaSyCt0Vx0Sfgg9f2GDMZU2T5uCx5Ng99p5Y0"; // Replace with your Google API key
+
+        jobListingsArray.forEach(function (element, index) {
+          var location = element.location;
+
+          // Make a request to the Geocoding API
+          $.ajax({
+            url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+              location
+            )}&key=${apiKey}`,
+            dataType: "json",
+            success: function (data) {
+              // Check if the response has results
+              if (data.results.length > 0) {
+                var result = data.results[0];
+                var locationData = result.geometry.location;
+
+                // Update the job listing object with lat/lng data
+                element.lat = locationData.lat;
+                element.lng = locationData.lng;
+              }
+
+              // Add a click event to the "View on Map" button
+              $(".view-map-button")
+                .eq(index)
+                .on("click", function () {
+                  openGoogleMaps(element.lat, element.lng);
+                });
+            },
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
