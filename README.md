@@ -66,4 +66,6 @@ The project integrates with the following APIs:
 
 - **Google Maps Search API**: [Google Maps Search API](https://www.google.com/maps/search/?api=1&query=LATITUDE,LONGITUDE)
 
+- **Side Note**: My Google APIs Free trial will come to an end in 8 days
+
 ---
