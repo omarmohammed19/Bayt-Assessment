@@ -35,5 +35,3 @@ Before running the TCL scripts, make sure you have TCL installed on your system.
    This will execute the reverse script.
 
 ---
-
-This is the first part of your README file, which provides clear instructions for setting up and running the TCL scripts. If you have any additional information to include or if you'd like assistance with the second part, please let me know.
