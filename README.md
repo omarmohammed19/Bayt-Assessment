@@ -1,10 +1,4 @@
-# Bayt-Assessment
-
-Certainly, I can help you draft the first part of your README file. This part provides instructions for the TCL task. Here's the content you can include in your README:
-
----
-
-# Project Name README
+# Bayt-Assessment README
 
 ## The TCL Task
 
