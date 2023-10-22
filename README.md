@@ -36,11 +36,6 @@ Before running the TCL scripts, make sure you have TCL installed on your system.
 
 ---
 
-
-Great, here's the second part of your README, which provides instructions for running the RSS Parser project:
-
----
-
 ## The RSS Parser
 
 The RSS Parser is a simple HTML, CSS, and JQuery project that utilizes the Bayt Jobs API, Google Maps Geocode API, and the Google Maps search API to display job listings with location information and the ability to locate the country on Google Maps.
@@ -72,5 +67,3 @@ The project integrates with the following APIs:
 - **Google Maps Search API**: [Google Maps Search API](https://www.google.com/maps/search/?api=1&query=LATITUDE,LONGITUDE)
 
 ---
-
-This second part of your README provides information about the RSS Parser project, the prerequisites, and how to access and run it. If you have any further details or questions, please feel free to let me know.
