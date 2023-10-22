@@ -66,7 +66,7 @@ The project integrates with the following APIs:
 
 - **Google Maps Search API**: [Google Maps Search API](https://www.google.com/maps/search/?api=1&query=LATITUDE,LONGITUDE)
 
-- **Notes**: My Google APIs Free trial will come to an end in 8 days
-             Normally I wouldn't leave API keys and sensitive info hard coded but rather I would use an env file but for the sake of easiness and speed I left them in the code
+- **Notes**: - My Google APIs Free trial will come to an end in 8 days
+             - Normally I wouldn't leave API keys and sensitive info hard coded but rather I would use an env file for the sake of easiness and speed I left them in the code
 
 ---
